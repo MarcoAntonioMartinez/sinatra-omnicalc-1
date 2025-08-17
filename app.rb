@@ -8,9 +8,9 @@ end
 
 get("/square/result") do
 
-  @number = params.fetch("number").to_i
+  @number = params.fetch("number").to_f
 
-  @result = @number * @number.to_f
+  @result = @number * @number
 
   erb(:square)
 
@@ -31,9 +31,9 @@ end
 get("/square_root/result") do
 #maybe put round to get the float zero out or something idk
   #@number = params.fetch("number").to_f.to_fs(:percentage, {:precision => 0})
-  @number = params.fetch("number").to_i
+  @number = params.fetch("number").to_f
 
-  @result = Math.sqrt(@number) * 1.0
+  @result = Math.sqrt(@number)
 
   erb(:sqrt)
 
@@ -42,9 +42,6 @@ end
 get("/payment/new") do
   erb(:payment_new)
 end
-
-
-
 
 get("/payment/result") do
 
@@ -68,4 +65,21 @@ get("/payment/result") do
   @payment = @payment.to_f.to_fs(:currency)
 
   erb(:payment)
+end
+
+
+get("/random/new") do
+
+  erb(:random_new)
+
+end
+
+get("/random/result") do
+
+  @min = params.fetch("min").to_f
+  @max = params.fetch("max").to_f
+
+  @result = rand(@min..@max)
+
+  erb(:random)
 end
